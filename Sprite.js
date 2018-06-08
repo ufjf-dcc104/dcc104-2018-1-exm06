@@ -28,18 +28,18 @@ Sprite.prototype.mover = function (dt) {
     this.x += this.vx*dt;
   }
 
-  if((this.vy+this.map.G*dt)<0 && this.map.cell[this.gy-1][this.gx]!==0){
+  if((this.vy)<0 && this.map.cell[this.gy-1][this.gx]!==0){
     var limite = (this.gy)*this.map.s;
     var maxDy = limite-(this.y-this.s/2);
-    var Dy = (this.vy+this.map.G*dt) *dt;
+    var Dy = (this.vy) *dt;
     this.y += Math.max(Dy, maxDy);
-  } else if((this.vy+this.map.G*dt) >0 && this.map.cell[this.gy+1][this.gx]!==0){
+  } else if((this.vy) >0 && this.map.cell[this.gy+1][this.gx]!==0){
     var limite = (this.gy+1)*this.map.s;
     var maxDy = limite-(this.y+this.s/2);
-    var Dy = (this.vy+this.map.G*dt) *dt;
+    var Dy = (this.vy) *dt;
     this.y += Math.min(Dy, maxDy);
   }else {
-    this.y += (this.vy+this.map.G*dt)*dt;
+    this.y += (this.vy)*dt;
   }
 
 
