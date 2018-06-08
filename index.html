@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 06</title>
+    <script src="Map.js"></script>
+    <script src="Sprite.js"></script>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="300"></canvas>
+    <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var mapa = new Map(20, 10, 16);
+    mapa.cell = MAPA1;
+    var anterior = dt = 0;
+    var pc = new Sprite(mapa);
+    pc.x = 60;
+    pc.y = 132;
+
+    requestAnimationFrame(passo)
+    function passo(t){
+      dt = (t - anterior)/1000;
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      pc.mover(dt);
+      mapa.desenhar(ctx);
+      pc.desenhar(ctx);
+      requestAnimationFrame(passo);
+      anterior = t;
+    }
+    </script>
+  </body>
+</html>
